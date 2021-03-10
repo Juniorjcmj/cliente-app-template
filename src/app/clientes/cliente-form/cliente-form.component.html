@@ -1,0 +1,101 @@
+<h1 class="mt-4 centralizar">Clientes</h1>
+<ol class="breadcrumb mb-4 centralizar">
+  <li class="breadcrumb-item active ">Cadastro</li>
+</ol>
+
+<div class="container">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of erros" >
+         {{erro}}
+        </div>
+      </div>
+    </div>
+
+   <div class="row" *ngIf="apareceIsData"  >
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>ID: </label>
+          <input type="text" class="form-control" disabled=true
+          formControlName="id" name="id"/>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Data Cadastro: </label>
+          <input type="text" class="form-control" disabled=true
+          formControlName="dataCadastro" name="dataCadastro"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>NOME: *</label>
+          <input type="text" class="form-control"
+          formControlName ="nome" />
+        </div>
+        <div *ngIf="formulario.controls.nome.errors" class="px-3 text-danger">
+          <p *ngIf="formulario.controls.nome.errors.required"><small>Nome obrigatório</small></p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>CPF: *</label>
+          <input type="text" class="form-control"
+          formControlName ="cpf" />
+        </div>
+        <div *ngIf="formulario.controls.cpf.errors" class="px-3 text-danger">
+          <p *ngIf="formulario.controls.cpf.errors.required"><small>CPF é obrigatório</small></p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>TELEFONE: *</label>
+          <input type="text" class="form-control"
+          formControlName ="telefone" />
+        </div>
+        <div *ngIf="formulario.controls.telefone.errors" class="px-3 text-danger">
+          <p *ngIf="formulario.controls.telefone.errors.required"><small>Telefone é  obrigatório</small></p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Endereço: *</label>
+          <input type="text" class="form-control"
+          formControlName ="endereco" />
+        </div>
+        <div *ngIf="formulario.controls.endereco.errors" class="px-3 text-danger">
+          <p *ngIf="formulario.controls.endereco.errors.required"><small>Endereço é obrigatório</small></p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Email: *</label>
+          <input type="text" class="form-control" formControlName ="email" />
+        </div>
+        <div *ngIf="formulario.controls.email.errors" class="px-3 text-danger">
+          <p *ngIf="formulario.controls.email.errors.required"><small>Email é obrigatório</small></p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-">
+          <button type="submit" class="btn btn-success" [disabled]="formulario.invalid">
+            <div class="fa fa-save"></div> SALVAR
+          </button>
+
+          <button type="submit" class="btn btn-danger ml-1" (click)="listaCliente()">
+            <div class="fa fa-arrow-alt-circle-left"></div> VOLTAR
+          </button>
+        </div>
+    </div>
+  </form>
+</div>

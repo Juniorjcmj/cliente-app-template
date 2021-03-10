@@ -1,0 +1,62 @@
+<h1 class="mt-4 centralizar">Clientes</h1>
+<ol class="breadcrumb mb-4 centralizar">
+  <li class="breadcrumb-item active ">Cadastro</li>
+</ol>
+<div class="container">
+   <div class="row">
+     <div class="col-md-2">
+       <button class="btn btn-warning" (click)="novoCadastro()">
+         <div class="fa fa-plus"></div> Novo
+       </button>
+     </div>
+   </div>
+   <br/>
+   <div class="row">
+       <div class="col-md-12">
+         <table class="table uk-table-condensed table-hover" >
+            <thead>
+              <th>ID</th>
+              <th>NOME</th>
+              <th>CPF</th>
+              <th>TELEFONE</th>
+              <th>ENDEREÇO</th>
+              <th>E-MAIL</th>
+
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of clientes" >
+                <td>{{cliente.id}}</td>
+                <td>{{cliente.nome}}</td>
+                <td>{{cliente.cpf}}</td>
+                <td>{{cliente.telefone}}</td>
+                <td>{{cliente.endereco}}</td>
+                <td>{{cliente.email}}</td>
+                <td>
+                  <span class="float-right">
+                    <button class="btn btn-success mb-1 btn-sm" >
+                      <i class="fa fa-edit"></i>
+                    </button>
+
+                    <button class="btn btn-outline-danger mb-1 btn-sm"  >
+                      Remover
+                    </button>
+                  </span>
+                </td>
+              </tr>
+
+            </tbody>
+         </table>
+       </div>
+   </div>
+
+   <!-- <ng-template #loadingNoError>
+    <div *ngIf="error$ | async; else loading">
+      Error ao carregar cursos. Tente novamente mais tarde.
+    </div>
+    <ng-template #loading>
+      <span>Carregando Cursos...</span>
+    </ng-template>
+
+   </ng-template> -->
+
+  </div>
