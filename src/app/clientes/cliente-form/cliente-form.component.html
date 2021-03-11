@@ -1,6 +1,6 @@
 <h1 class="mt-4 centralizar">Clientes</h1>
 <ol class="breadcrumb mb-4 centralizar">
-  <li class="breadcrumb-item active ">Cadastro</li>
+  <li class="breadcrumb-item active ">{{id ?  'Edição' : 'Cadastro'}}</li>
 </ol>
 
 <div class="container">
@@ -88,8 +88,11 @@
     </div>
     <div class="row">
         <div class="col-md-">
-          <button type="submit" class="btn btn-success" [disabled]="formulario.invalid">
+          <button type="submit" class="btn btn-success" [disabled]="formulario.invalid" *ngIf="!id">
             <div class="fa fa-save"></div> SALVAR
+          </button>
+          <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid" *ngIf="id">
+            <div class="fa fa-sync-alt"></div> ATUALIZAR
           </button>
 
           <button type="submit" class="btn btn-danger ml-1" (click)="listaCliente()">
