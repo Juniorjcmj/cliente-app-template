@@ -27,15 +27,13 @@ export class ClienteFormComponent implements OnInit {
     let params = this.activateRouter.params
     if(params ){
      params.subscribe(parametro => {
-       this.id = parametro.id
+       this.id = parametro['id']
       });
       this.service.loadById(this.id)
           .subscribe(response =>{
             this.formulario.setValue(response);
           })
-
     }
-
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(4)]],
       cpf:[null, [Validators.required]],
@@ -48,13 +46,10 @@ export class ClienteFormComponent implements OnInit {
     });
   }
   onSubmit(){
-
-
     if(this.id){
       this.service.save(this.formulario.value)
       .subscribe(response => {
         this.erros = [];
-
             this.alertService.shoAlertSuccess(
              "Atualização Realizada com sucesso!"
             );
