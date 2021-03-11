@@ -15,7 +15,6 @@ export class ClienteFormComponent implements OnInit {
  formulario: FormGroup;
  erros: String[];
  cliente: Cliente;
- apareceIsData: boolean = false;
  id: number;
 
   constructor( private service : ClientesService,
@@ -32,12 +31,10 @@ export class ClienteFormComponent implements OnInit {
       });
       this.service.loadById(this.id)
           .subscribe(response =>{
-            this.apareceIsData = true;
             this.formulario.setValue(response);
           })
 
     }
-
 
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(4)]],
@@ -51,23 +48,38 @@ export class ClienteFormComponent implements OnInit {
     });
   }
   onSubmit(){
-    this.service.save(this.formulario.value)
-    .subscribe(response => {
-      // this.erros = [];
-      this.apareceIsData = true;
-      this.formulario.setValue(response);
-          this.alertService.shoAlertSuccess(
-           "Cadastro Realizado com sucesso!"
-          );
+
+
+    if(this.id){
+      this.service.save(this.formulario.value)
+      .subscribe(response => {
+        this.erros = [];
+
+            this.alertService.shoAlertSuccess(
+             "Atualização Realizada com sucesso!"
+            );
+      },
+      error => {
+        this.erros = error.error.erros;
+      });
+
+    }else{
+      this.service.save(this.formulario.value)
+      .subscribe(response => {
+        this.formulario.setValue(response);
+            this.alertService.shoAlertSuccess(
+             "Cadastro Realizado com sucesso!"
+            );
+      },
+      error => {
+        this.erros = error.error.erros;
+
+      });
+
+    }
 
 
 
-    },
-    error => {
-      this.erros = error.error.erros;
-      console.log(error)
-
-    });
   }
   resetar(){
     this.formulario.reset();
