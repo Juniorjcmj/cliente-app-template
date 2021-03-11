@@ -14,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AlertModule } from 'ngx-bootstrap/alert';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { AlertService } from './shared/alert.service';
 
 @NgModule({
   declarations: [
@@ -30,12 +31,14 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ReactiveFormsModule,
     SharedModule,
     AlertModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    SweetAlert2Module.forRoot()
 
   ],
   providers: [
 
-    ClientesService
+    ClientesService,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })

@@ -7,13 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientesListaComponent } from './clientes-lista/clientes-lista.component';
 
 
+
 @NgModule({
   declarations: [ClienteFormComponent, ClientesListaComponent],
   imports: [
     CommonModule,
     ClientesRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
 
   ],
   exports:[

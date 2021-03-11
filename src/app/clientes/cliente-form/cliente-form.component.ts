@@ -4,6 +4,7 @@ import { ClientesService } from '../../clientes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AlertService } from '../../shared/alert.service';
 
 @Component({
   selector: 'app-cliente-form',
@@ -21,7 +22,8 @@ export class ClienteFormComponent implements OnInit {
                public formBuilder: FormBuilder,
                private alertService: AlertModalService,
                private router : Router,
-               private activateRouter : ActivatedRoute ) {
+               private activateRouter : ActivatedRoute,
+               private alert : AlertService ) {
   }
   ngOnInit(): void {
     let params = this.activateRouter.params
@@ -50,32 +52,29 @@ export class ClienteFormComponent implements OnInit {
       this.service.save(this.formulario.value)
       .subscribe(response => {
         this.erros = [];
-            this.alertService.shoAlertSuccess(
-             "Atualização Realizada com sucesso!"
-            );
+            this.alert.alertWithSuccess("Atualização realizada com sucesso!")
       },
       error => {
         this.erros = error.error.erros;
+        this.alert.alertError(this.erros)
       });
 
     }else{
       this.service.save(this.formulario.value)
       .subscribe(response => {
+        this.erros = [];
         this.formulario.setValue(response);
-            this.alertService.shoAlertSuccess(
-             "Cadastro Realizado com sucesso!"
-            );
+            this.alert.alertWithSuccess("Cadastro realizado com sucesso!")
       },
       error => {
         this.erros = error.error.erros;
+        this.alert.alertError(this.erros)
 
       });
 
     }
-
-
-
   }
+
   resetar(){
     this.formulario.reset();
   }
