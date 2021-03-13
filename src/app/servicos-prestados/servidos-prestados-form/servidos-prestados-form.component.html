@@ -1,0 +1,24 @@
+<h1 class="mt-4 centralizar">Clientes</h1>
+<ol class="breadcrumb mb-4 centralizar">
+  <li class="breadcrumb-item active ">{{id ?  'Edição' : 'Cadastro'}}</li>
+</ol>
+<div class="container">
+  <form #form="ngForm" (submit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Cliente: </label>
+          <select name="" id="">
+              <option value="">Selecione...</option>
+              <option *ngFor="let cliente of clientes"[ngValue]="cliente.id" >
+                  {{cliente.nome}}
+              </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+  </form>
+</div>
