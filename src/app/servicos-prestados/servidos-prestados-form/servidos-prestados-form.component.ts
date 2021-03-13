@@ -6,6 +6,7 @@ import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { AlertService } from 'src/app/shared/alert.service';
 import { ClientesService } from '../../clientes.service';
 import { ServicosPrestadosServiceService } from '../servicos-prestados-service.service';
+import { ServicosPrestados } from '../../model/servicosPrestados';
 
 @Component({
   selector: 'app-servidos-prestados-form',
@@ -19,7 +20,6 @@ export class ServidosPrestadosFormComponent implements OnInit {
  erros: String[];
  id: number;
  clientes: Cliente[] = [];
-
 
   constructor(public formBuilder: FormBuilder,
     private alertService: AlertModalService,
@@ -67,6 +67,9 @@ export class ServidosPrestadosFormComponent implements OnInit {
       });
 
     }
+  }
+  listaServicosPrestados(){
+
   }
 
 }

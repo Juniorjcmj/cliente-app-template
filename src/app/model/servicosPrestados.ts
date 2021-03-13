@@ -1,5 +1,5 @@
 export class ServicosPrestados{
-  id: number;
+  // id: number;
   descricao: string;
   valor: string;
   idCliente: number;

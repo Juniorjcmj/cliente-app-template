@@ -7,7 +7,7 @@ export class CrudService<T> {
   constructor(protected http: HttpClient, private API_URL) { }
 
   list(){
-    return this.http.get<T[]>(this.API_URL)
+    return this.http.get<T[]>(`${this.API_URL}`)
     .pipe(
       tap()
     );

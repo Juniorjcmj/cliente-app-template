@@ -10,7 +10,7 @@ import { CrudService } from '../shared/crud-service';
 export class ServicosPrestadosServiceService extends CrudService<ServicosPrestados> {
 
   constructor(protected http: HttpClient) {
-    super(http, `${environment.API}`);
+    super(http, `${environment.API}/servicos-prestados`);
   }
 }
 
